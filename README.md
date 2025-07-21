@@ -1,1 +1,52 @@
-# kubernetes_theory_l
+# Spring Batch
+
+## Tabla de Contenido
+
+- [Introducción al Procesamiento por Lotes y Fundamentos de Spring Batch](#introduccion-spring-batch-fundamentos)
+  - [¿Qué es el Procesamiento por Lotes?](#que-es-procesamiento-lotes)
+  - [¿Por qué Spring Batch?](#por-que-spring-batch)
+  - [Conceptos Centrales de Spring Batch](#conceptos-centrales-spring-batch)
+  - [Visión General de la Arquitectura de Spring Batch](#arquitectura-spring-batch)
+  - [Configuración de un Proyecto Spring Batch (con Spring Boot)](#configuracion-proyecto-spring-batch)
+
+- [Lectores, Procesadores y Escritores de Ítems (Procesamiento Orientado a Chunks)](#lectores-procesadores-escritores)
+  - [Procesamiento Orientado a Chunks (Chunk-Oriented Processing)](#procesamiento-chunks)
+  - [Lectores de Ítems (`ItemReader<I>`)](#item-readers)
+    - [Lectores Basados en Archivos](#lectores-basados-archivos)
+    - [Lectores de Base de Datos](#lectores-base-datos)
+    - [ItemReader Personalizado](#itemreader-personalizado)
+  - [Procesadores de Ítems (`ItemProcessor<I, O>`)](#item-processors)
+  - [Escritores de Ítems (`ItemWriter<O>`)](#item-writers)
+    - [Escritores Basados en Archivos](#escritores-basados-archivos)
+    - [Escritores de Base de Datos](#escritores-base-datos)
+    - [ItemWriter Personalizado](#itemwriter-personalizado)
+  - [Transacciones en el Procesamiento por Chunks](#transacciones-chunks)
+
+- [Control de Flujo y Gestión de Jobs](#control-flujo-gestion-jobs)
+  - [Definición de Flujos de Jobs](#definicion-flujos-jobs)
+  - [Parámetros de Job](#parametros-job)
+  - [Lanzamiento y Ejecución de Jobs](#lanzamiento-ejecucion-jobs)
+  - [Capacidad de Reinicio de Jobs](#capacidad-reinicio-jobs)
+  - [Detención y Abandono de Jobs](#detencion-abandono-jobs)
+
+- [Manejo de Errores y Resiliencia](#manejo-errores-resiliencia)
+  - [Salto (Skip) y Reintento (Retry)](#skip-retry)
+  - [Manejo de Excepciones en Lectores, Procesadores, Escritores](#manejo-excepciones-readers-processors-writers)
+  - [Listeners (Escuchadores)](#listeners-spring-batch)
+  - [Gestión de Transacciones](#gestion-transacciones-spring-batch)
+  - [Errores Fatales vs. Recuperables](#errores-fatales-recuperables)
+  - [Manejo de Deadlocks](#manejo-deadlocks)
+
+- [Conceptos Avanzados y Mejores Prácticas](#conceptos-avanzados-mejores-practicas)
+  - [Escalado de Aplicaciones Batch](#escalado-aplicaciones-batch)
+    - [Pasos Multi-hilo (`TaskExecutor`)](#pasos-multi-hilo)
+    - [Particionamiento (`PartitionHandler`, `Partitioner`)](#particionamiento)
+    - [Chunking Remoto (Remote Chunking)](#chunking-remoto)
+    - [Escalado con Spring Cloud Task / Spring Cloud Data Flow](#escalado-spring-cloud-task-data-flow)
+  - [ItemStream Personalizado](#itemstream-personalizado)
+  - [Tasklets](#tasklets)
+  - [Consideraciones de Rendimiento](#consideraciones-rendimiento)
+  - [Pruebas de Jobs de Spring Batch](#pruebas-jobs-spring-batch)
+  - [Monitorización y Aspectos Operacionales](#monitorizacion-operacionales)
+  - [Spring Batch e Integración con Spring Integration](#spring-batch-spring-integration)
+  - [Mejores Prácticas para el Diseño de Jobs Batch](#mejores-practicas-diseno-jobs)
